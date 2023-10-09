@@ -40,4 +40,13 @@ public class Conta {
     public double getSaldo() {
       return Saldo;
     }
+
+    public String getnumeroConta() {
+        return numeroConta;
+    }
+
+    public String getnumeroAgencia() {
+        return numeroAgencia;
+    }
+
 }
