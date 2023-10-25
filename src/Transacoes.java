@@ -1,14 +1,15 @@
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Transacoes {
     private double valor;
     private String tipo;
-    private LocalDate data;
+    private Date data;
 
-    public Transacoes(LocalDate localDate, double valor2, String tipo2) {
+    public Transacoes(String tipo, double valor) {
         this.valor = valor;
         this.tipo = tipo;
-        this.data = data;
+        this.data = new Date();
     }
 
     public double getValor() {
@@ -19,7 +20,7 @@ public class Transacoes {
         return tipo;
     }
 
-    public LocalDate getData() {
+    public Date getData() {
         return data;
     }
     
@@ -31,7 +32,7 @@ public class Transacoes {
             this.tipo = tipo;
         }
     
-        public void setData(LocalDate data) {
+        public void setData(Date data) {
             this.data = data;
         }
 
