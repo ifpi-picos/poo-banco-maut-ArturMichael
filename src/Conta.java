@@ -1,38 +1,31 @@
+
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Conta {
     private String agencia;
     private String numero;
     protected double saldo;
     private Cliente cliente;
-    private Notificacoes notificacoes;
+    protected Notificacoes notificacoes;
+    private List<Transacoes> transacoes;
 
-    public Conta(String agencia, String numero, Cliente cliente, int transferenciasRealizadas, Notificacoes notificacoes2) {
+
+    public Conta(String agencia, String numero, Cliente cliente, Notificacoes notificacoes) {
         this.agencia = agencia;
         this.numero = numero;
         this.cliente = cliente;
         this.saldo = 0;
         this.notificacoes = notificacoes;
+        this.transacoes = new ArrayList<>();
+
     }
 
-    public void depositar(double valor) {
-        this.saldo += valor;
-    }
+    public abstract void depositar(double valor);
 
-    public void sacar(double valor) {
-        if (valor <= saldo) {
-            this.saldo -= valor;
-        } else {
-            System.out.println("Saldo insuficiente");
-        }
-    }
+    public abstract void sacar(double valor);
 
-    public void transferir(Conta contaDestino, double valor) {
-        if (valor <= saldo) {
-            this.saldo -= valor;
-            contaDestino.depositar(valor);
-        } else {
-            System.out.println("Saldo insuficiente");
-        }
-    }
+    public abstract void transferir(Conta contaDestino, double valor);
 
     public void exibirExtrato() {
         System.out.println("Agência: " + this.agencia);
@@ -83,6 +76,11 @@ public abstract class Conta {
     public Notificacoes getNotificacoes() {
         return notificacoes;
     }
+
+    public List<Transacoes> getTransacoes() {
+        return transacoes;
+    }
+
 
 
 
