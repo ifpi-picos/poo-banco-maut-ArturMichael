@@ -28,16 +28,19 @@ public class App {
                     System.out.print("Digite o CPF do cliente: ");
                     String cpfCliente = scanner.next();
                     Cliente cliente = new Cliente(nomeCliente, cpfCliente, null, null);
-                    ContaCorrente contaCorrente = new ContaCorrente(nomeCliente, nomeCliente, cliente, 1000, escolha, null);
+                    ContaCorrente contaCorrente = new ContaCorrente(nomeCliente, nomeCliente, cliente,new NotificacoesSMS());
+                    contaCorrente.setNotificacoes(new NotificacoesEmail());
+                    contaCorrente.setNotificacoes(new NotificacoesSMS());
                     banco.adicionarConta(contaCorrente);
                     break;
+
                 case 2:
                     System.out.print("Digite o numero da conta: ");
                     nomeCliente = scanner.next();
                     System.out.print("Digite o CPF do cliente: ");
                     cpfCliente = scanner.next();
                     cliente = new Cliente(nomeCliente, cpfCliente, null, null);
-                    ContaPoupanca contaPoupanca = new ContaPoupanca(nomeCliente, nomeCliente, cliente, 0.1, 0.05, 0.02, escolha, null);
+                    ContaPoupanca contaPoupanca = new ContaPoupanca(nomeCliente, nomeCliente, cliente,new NotificacoesEmail());
                     banco.adicionarConta(contaPoupanca);
                     break;
                 case 3:
