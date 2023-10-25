@@ -1,62 +1,91 @@
-import java.util.ArrayList;
-import java.util.List;
+public abstract class Conta {
+    private String agencia;
+    private String numero;
+    protected double saldo;
+    private Cliente cliente;
+    private Notificacoes notificacoes;
 
-public class Conta {
-    private String numeroAgencia;
-    private String numeroConta;
-    private  double Saldo;
-    private List<String>extrato;
-    
-
-    public Conta(String numeroAgencia, String numeroConta, double Saldo) {
-        this.numeroAgencia = numeroAgencia;
-        this.numeroConta = numeroConta;
-        this.Saldo = 0.0;
-        this.extrato = new ArrayList<>();
-        
+    public Conta(String agencia, String numero, Cliente cliente, int transferenciasRealizadas, Notificacoes notificacoes2) {
+        this.agencia = agencia;
+        this.numero = numero;
+        this.cliente = cliente;
+        this.saldo = 0;
+        this.notificacoes = notificacoes;
     }
 
     public void depositar(double valor) {
-        if (valor > 0) {
-            Saldo += valor;
-            System.out.println("Depósito de R$" + valor + " realizado com sucesso.");
-        } else {
-            System.out.println("Valor de depósito inválido.");
-        }
+        this.saldo += valor;
     }
 
     public void sacar(double valor) {
-        if (valor > 0 && valor >= Saldo) {
-            System.out.println("saque de " + valor + "realizado com sucesso");
+        if (valor <= saldo) {
+            this.saldo -= valor;
         } else {
-            System.out.println("saque invalido");
+            System.out.println("Saldo insuficiente");
         }
     }
 
-    public void transferir(double valor) {
-        if (valor > 0 && valor >= Saldo ) {
-            System.out.println("tranferencia de " + valor + " realizado com sucesso");
+    public void transferir(Conta contaDestino, double valor) {
+        if (valor <= saldo) {
+            this.saldo -= valor;
+            contaDestino.depositar(valor);
         } else {
-            System.out.println("transferencia invalida");
+            System.out.println("Saldo insuficiente");
         }
     }
 
     public void exibirExtrato() {
-        for (String transacao : extrato) {
-            System.out.println(transacao);
-        }
+        System.out.println("Agência: " + this.agencia);
+        System.out.println("Número: " + this.numero);
+        System.out.println("Saldo: " + this.saldo);
+    }
+
+    public String getAgencia() {
+        return agencia;
+    }
+
+    public String getNumero() {
+        return numero;
     }
 
     public double getSaldo() {
-      return Saldo;
+        return saldo;
     }
 
-    public String getnumeroConta() {
-        return numeroConta;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public String getnumeroAgencia() {
-        return numeroAgencia;
+    public void setAgencia(String agencia) {
+        this.agencia = agencia;
     }
 
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public void notificacoes(String tipo, double valor) {
+        notificacoes.enviaNotificacoes(tipo, valor);
+    }
+
+    public void setNotificacoes(Notificacoes notificacoes) {
+        this.notificacoes = notificacoes;
+    }
+
+    public Notificacoes getNotificacoes() {
+        return notificacoes;
+    }
+
+
+
+
+    
 }
