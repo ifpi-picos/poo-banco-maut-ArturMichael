@@ -7,7 +7,7 @@ public abstract class Conta {
     private String numero;
     protected double saldo;
     private Cliente cliente;
-    protected Notificacoes notificacoes;
+    protected Notificacoes notificacoes; // atributo com valor único deve ser escrito no singular
     private List<Transacoes> transacoes;
 
 
@@ -27,6 +27,9 @@ public abstract class Conta {
 
     public abstract void transferir(Conta contaDestino, double valor);
 
+
+    // exibir extrato deve listar todas as transações ja realizada na conta, aqui está exibindo
+    // só o estado atual
     public void exibirExtrato() {
         System.out.println("Agência: " + this.agencia);
         System.out.println("Número: " + this.numero);
@@ -83,7 +86,4 @@ public abstract class Conta {
 
 
 
-
-
-    
 }

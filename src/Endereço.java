@@ -1,10 +1,12 @@
+
+// Nome de classe, atributo e métodos não deve ter caracteres especiais
 public class Endereço {
     private String rua;
     private String bairro;
     private String cidade;
     private String estado;
     private String cep;
-    
+
     public Endereço(String rua, String bairro, String cidade, String estado, String cep) {
         this.rua = rua;
         this.bairro = bairro;
@@ -13,8 +15,7 @@ public class Endereço {
         this.cep = cep;
     }
 
-    public Endereço(String numero, String cep2) {
-    }
+    public Endereço(String numero, String cep2) {}
 
     public void setRua(String rua) {
         this.rua = rua;
@@ -48,12 +49,12 @@ public class Endereço {
         this.cep = cep;
     }
 
-    @Override  
+    @Override
     public String toString() {
-        return "Endereco [bairro=" + bairro + ", cep=" + cep + ", cidade=" + cidade + ", estado=" + estado + ", rua="
-                + rua + "]";
+        return "Endereco [bairro=" + bairro + ", cep=" + cep + ", cidade=" + cidade + ", estado="
+                + estado + ", rua=" + rua + "]";
     }
 
-    
-    
+
+
 }
